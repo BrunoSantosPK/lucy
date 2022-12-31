@@ -1,0 +1,32 @@
+version: "3"
+services:
+  database:
+    container_name: db_lucy 
+    image: "postgres"
+    env_file:
+      - ./config/database.env
+    ports:
+      - "12321:5432"
+    volumes:
+      - dblucy:/var/lib/postgres
+    networks:
+      - dbnet
+
+  pgadmin:
+    container_name: pgadmin_lucy
+    image: dpage/pgadmin4
+    env_file:
+      - ./config/pgadmin.env
+    ports:
+      - "12123:80"
+    depends_on:
+      - database
+    networks:
+      - dbnet
+
+volumes: 
+  dblucy:
+
+networks:
+  dbnet:
+    driver: bridge
