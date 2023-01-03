@@ -7,6 +7,9 @@ import { Wallet } from './models/wallet.entity';
 import { WalletsController } from './wallets/wallets.controller';
 import { ConfigModule } from '@nestjs/config';
 import { Tag } from './models/tag.entity';
+import { WalletTag } from './models/wallet-tag.entity';
+import { TagsModule } from './tags/tags.module';
+import { TagsController } from './tags/tags.controller';
 
 @Module({
   imports: [
@@ -14,6 +17,7 @@ import { Tag } from './models/tag.entity';
       envFilePath: "./src/config/app.env"
     }),
     WalletsModule,
+    TagsModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
@@ -21,11 +25,11 @@ import { Tag } from './models/tag.entity';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-      entities: [Wallet, Tag],
+      entities: [Wallet, Tag, WalletTag],
       synchronize: true
     })
   ],
-  controllers: [AppController, WalletsController],
+  controllers: [AppController, WalletsController, TagsController],
   providers: [AppService],
 })
 export class AppModule {}
