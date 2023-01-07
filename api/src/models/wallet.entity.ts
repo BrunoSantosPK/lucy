@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { WalletTag } from './wallet-tag.entity';
+import { Transaction } from './transaction.entity';
 
 @Entity({name: "wallets"})
 export class Wallet {
@@ -21,4 +22,7 @@ export class Wallet {
 
     @Column({type: 'datetime', nullable: true, name: 'modify_at'})
     modifyAt: Date;
+
+    @OneToMany(() => Transaction, transaction => transaction.id)
+    transactionIds: Transaction[];
 }

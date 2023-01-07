@@ -10,6 +10,7 @@ import { Tag } from './models/tag.entity';
 import { WalletTag } from './models/wallet-tag.entity';
 import { TagsModule } from './tags/tags.module';
 import { TagsController } from './tags/tags.controller';
+import { Transaction } from './models/transaction.entity';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { TagsController } from './tags/tags.controller';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-      entities: [Wallet, Tag, WalletTag],
+      entities: [Wallet, Tag, WalletTag, Transaction],
       synchronize: true
     })
   ],

@@ -6,6 +6,7 @@ import { ConfigModule } from "@nestjs/config";
 import { Wallet } from "../models/wallet.entity";
 import { Seeder } from "./seeder";
 import { WalletTag } from "../models/wallet-tag.entity";
+import { Transaction } from "../models/transaction.entity";
 
 @Module({
     imports: [
@@ -20,7 +21,7 @@ import { WalletTag } from "../models/wallet-tag.entity";
             username: process.env.DB_USER,
             password: process.env.DB_PASS,
             database: process.env.DB_NAME,
-            entities: [Wallet, Tag, WalletTag],
+            entities: [Wallet, Tag, WalletTag, Transaction],
             synchronize: true
         }),
         TypeOrmModule.forFeature([Tag])

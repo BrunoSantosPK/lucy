@@ -9,7 +9,10 @@ export class SeedService {
 
     async create() {
         const base = [
-            {name: "SUPERMERCADO"}, {name: "LAZER"}, {name: "SAÚDE"}
+            {name: "SUPERMERCADO", systemTag: false},
+            {name: "LAZER", systemTag: false},
+            {name: "SAÚDE", systemTag: false},
+            {name: "TRANSFERÊNCIA", systemTag: true}
         ];
         for(let i = 0; i < base.length; i++) {
             let element = await this.tagRepository.findOne({where: {name: base[i].name}})
@@ -19,6 +22,7 @@ export class SeedService {
 
             let tag = new Tag();
             tag.name = base[i].name;
+            tag.systemTag = base[i].systemTag;
             await this.tagRepository.save(tag);
         }
 

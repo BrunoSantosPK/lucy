@@ -10,4 +10,7 @@ export class Tag {
 
     @Column({type: 'datetime', default: () => 'NOW()', name: 'create_at'})
     createAt: Date;
+
+    @Column({type: "boolean", default: false})
+    systemTag: boolean;
 }
