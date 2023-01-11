@@ -12,6 +12,11 @@ export class SeedService {
             {name: "SUPERMERCADO", systemTag: false},
             {name: "LAZER", systemTag: false},
             {name: "SAÚDE", systemTag: false},
+            {name: "TECNOLOGIA", systemTag: false},
+            {name: "EMERGÊNCIA", systemTag: false},
+            {name: "RECORRÊNCIA", systemTag: false},
+            {name: "RESERVA", systemTag: false},
+            {name: "MORADIA", systemTag: false},
             {name: "TRANSFERÊNCIA", systemTag: true}
         ];
         for(let i = 0; i < base.length; i++) {
@@ -25,17 +30,5 @@ export class SeedService {
             tag.systemTag = base[i].systemTag;
             await this.tagRepository.save(tag);
         }
-
-        /*base.forEach(obj => {
-            this.tagRepository.findOne({where: {name: obj.name}})
-                .then(async element => {
-                    if(!element) {
-                        let tag = new Tag();
-                        tag.name = obj.name;
-                        await this.tagRepository.save(tag);
-                    }
-                })
-                .catch(error => console.log(error));
-        });*/
     }
 }

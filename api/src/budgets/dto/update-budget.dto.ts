@@ -1,21 +1,19 @@
 import { IsNotEmpty, Length } from "class-validator";
 
-export class NewTransactionDto {
+export class UpdateBudgetDto {
     @IsNotEmpty()
     @Length(36, 36)
-    idWalletOrigin: string;
-
-    @Length(36, 36)
-    idWalletDestiny: string;
+    id: string;
 
     @IsNotEmpty()
-    value: number;
+    @Length(5, 50)
+    name: string;
 
     @IsNotEmpty()
-    tags: string[];
+    startDate: Date;
 
     @IsNotEmpty()
-    date: Date;
+    endDate: Date;
 
     @Length(10)
     comment: string;

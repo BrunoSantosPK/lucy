@@ -1,5 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { Wallet } from "./wallet.entity";
+import { Transfer } from "./transaction-transfer.entity";
+import { TransactionTag } from "./transaction-tag.entity";
 
 @Entity({name: "transactions"})
 export class Transaction {
@@ -24,4 +26,13 @@ export class Transaction {
 
     @Column({type: "datetime", nullable: true, name: "modify_at"})
     modifyAt: Date;
+
+    @OneToMany(() => Transfer, transfer => transfer.id)
+    originIds: Transfer[];
+
+    @OneToMany(() => Transfer, transfer => transfer.id)
+    destinyIds: Transfer[];
+
+    @OneToMany(() => TransactionTag, transactionTag => transactionTag.id)
+    transactionTagIds: TransactionTag[]
 }

@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { TransactionTag } from './transaction-tag.entity';
+import { BudgetTag } from './budget-tag.entity';
 
 @Entity({name: "tags"})
 export class Tag {
@@ -13,4 +15,10 @@ export class Tag {
 
     @Column({type: "boolean", default: false})
     systemTag: boolean;
+
+    @OneToMany(() => TransactionTag, transactionTag => transactionTag.id)
+    transactionTagIds: TransactionTag[]
+
+    @OneToMany(() => BudgetTag, budgetTag => budgetTag.id)
+    budgetTagIds: BudgetTag[]
 }
